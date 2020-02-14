@@ -1,0 +1,32 @@
+{
+  "name": "solid_english_words",
+  "version": "0.0.1",
+  "description": "The app to memorize English words with long-term result",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "local": "NODE_ENV=local nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stanisdev/solid_english_words.git"
+  },
+  "keywords": [
+    "english",
+    "memorize"
+  ],
+  "author": "Stanislav Zavalishin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stanisdev/solid_english_words/issues"
+  },
+  "homepage": "https://github.com/stanisdev/solid_english_words#readme",
+  "dependencies": {
+    "fastify": "2.12.0",
+    "glob": "7.1.6",
+    "mongoose": "5.8.12"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
