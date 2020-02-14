@@ -1,7 +1,7 @@
 'use string'
 
 class Word {
-  constructor() {}
+  prefix = '/word';
 
   /**
    * Return word
@@ -9,14 +9,15 @@ class Word {
   ['GET: /']() {
     return {
       queryStr: {
-        name: { type: 'string' }
+        time: { type: 'integer' }
       },
-      body: {
-        success: { type: 'boolean' }
+      reply: {
+        en: { type: 'string' },
+        ru: { type: 'string' }
       },
       async h(req) {
         // const data = await this.db.sendQuery();
-        return { ok: true, 3: 5 };
+        return { ok: true, en: 'occasionally' };
       }
     };
   }
@@ -26,6 +27,9 @@ class Word {
    */
   ['GET: /:id']() {
     return {
+      params: {
+        id: { type: 'integer', minimum: 1 }
+      },
       async h(req) {
         return { ok: true };
       }
