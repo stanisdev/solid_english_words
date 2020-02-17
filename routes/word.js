@@ -16,8 +16,8 @@ class Word {
         ru: { type: 'string' }
       },
       async h(req) {
-        // const data = await this.db.sendQuery();
-        return { ok: true, en: 'occasionally' };
+        const word = await this.db.Word.findOne({ en: 'occasionally' });
+        return { ok: true, en: word.id };
       }
     };
   }

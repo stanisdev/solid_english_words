@@ -1,9 +1,10 @@
 'use string'
 
-const { routesDir } = require('../config');
+const fp = require('fastify-plugin');
 const glob = require('glob');
 
-module.exports = (fastify) => {
+module.exports = fp(async (fastify) => {
+  const { routesDir } = fastify.config; // @todo: rewrite as a class
   const files = glob.sync(routesDir + '/*.js');
 
   files.forEach(filePath => {
@@ -61,4 +62,4 @@ module.exports = (fastify) => {
       fastify.route(options);
     });
   });
-};
+});

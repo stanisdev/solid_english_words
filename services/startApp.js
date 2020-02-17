@@ -1,15 +1,20 @@
 'use string'
 
 const fastify = require('fastify')({ logger: true });
-require('./buildRoutes')(fastify);
+const config = require('../config');
+const { port } = config;
 
-const start = async () => {
+fastify.decorate('config', config);
+
+fastify.register(require('./connectToMongodb'));
+fastify.register(require('./buildRoutes'));
+
+(async () => {
   try {
-    await fastify.listen(3000);
-    fastify.log.info(`server listening on ${fastify.server.address().port}`);
+    await fastify.listen(port);
+    fastify.log.info(`App listening on ${port}`);
   } catch (err) {
     fastify.log.error(err);
     process.exit(1);
   }
-}
-start();
+})();
