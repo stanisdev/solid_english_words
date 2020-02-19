@@ -50,6 +50,23 @@ module.exports = fp(async (fastify) => {
           properties: routeParams.params
         };
       }
+      if (routeParams.hasOwnProperty('body')) { // body
+        const body = {
+          type: 'object',
+          properties: {}
+        };
+        Object.keys(routeParams.body).forEach(fieldName => {
+          body.properties[fieldName] = routeParams.body[fieldName];
+        });
+        const symbols = Object.getOwnPropertySymbols(routeParams.body);
+        const required = symbols.find(symbol => symbol.toString().includes('required'));
+        if (typeof required == 'symbol') { // required fields
+
+          body.required = [];
+          routeParams.body[required].forEach(fieldName => body.required.push(fieldName));
+        }
+        schema.body = body;
+      }
 
       const options = { // Prepared route options
         method: httpMethod,

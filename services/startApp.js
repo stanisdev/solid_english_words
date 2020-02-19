@@ -6,6 +6,7 @@ const { port } = config;
 
 fastify.decorate('config', config);
 
+fastify.register(require('./errorHandler'));
 fastify.register(require('./connectToMongodb'));
 fastify.register(require('./buildRoutes'));
 
